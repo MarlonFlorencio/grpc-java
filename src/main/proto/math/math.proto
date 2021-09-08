@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_package = "com.github.marlonflorencio.proto.math";
+option java_multiple_files = true;
+
+message SumRequest {
+    int64 value1 = 1;
+    int64 value2 = 2;
+}
+
+message DoubleResponse {
+    double result = 1;
+}
+
+message LongRequest {
+    int64 value = 1;
+}
+
+message LongResponse {
+    int64 result = 1;
+}
+
+service MathService {
+
+    rpc Sum(SumRequest) returns (LongResponse) {};
+
+    rpc Prime(LongRequest) returns (stream LongResponse) {};
+
+    rpc Average(stream LongRequest) returns (DoubleResponse) {};
+
+    rpc FindMaximum(stream LongRequest) returns (stream LongResponse) {};
+
+    rpc SquareRoot(LongRequest) returns (DoubleResponse) {};
+
+}
